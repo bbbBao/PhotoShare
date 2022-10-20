@@ -1,0 +1,30 @@
+<title>Write Comments</title>
+
+<style>
+    img {
+      width: 50%;
+      height: 50%;
+    }
+</style>
+
+{% if photos %}
+    <h2>Here are All photos</h2>
+        <ul>
+            <form method="post" action="{{ url_for('comment') }}">
+                <label for="photoid">Photo ID:</label>
+                <input type="text" name="photoid"><br />
+                <label for="commenting">Enter Your Comment:</label>
+                <input type="text" name="commenting">
+                <input type="submit" value="Submit"/><br>
+        <br>
+        {% for photo in photos %}
+        <form method="post" enctype="multipart/form-data" action='/likephotos'>
+            Photo ID : {{photo[1]}}<br>
+            Caption: {{photo[2]}}<br>
+            <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}'>
+
+        </form>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <li><a href='/'>Home</a></li>

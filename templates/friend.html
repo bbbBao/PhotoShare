@@ -1,0 +1,99 @@
+<head>
+    <title>Friends</title>
+</head>
+
+<h1>Friends</h1>
+</br>
+
+<h2>Friends You May Know:</h2>
+{% if not friendrecom %}
+<p>There are no recommendations for now. </p>
+{% endif %}
+
+{% if friendrecom %}
+    {% for user in friendrecom %}
+    <form method="post" enctype="multipart/form-data" action='/friend'>
+        <li>
+        <button name="addFriend" value="{{user[5]}}" type="submit">Add Friend</button> 
+        {{user[0]}} {{user[1]}} </br>
+        Gender: {{user[4]}} <br>
+        E-mail: {{user[6]}} <br>
+        Date of Birth: {{user[2]}} <br>
+        Hometown: {{user[3]}} <br>
+        </li>
+    </form>
+    {% endfor %}
+{% endif %}
+
+<h2>Add Friends:</h2>
+{% if strangers %}
+    {% for stranger in strangers %}
+    <form method="post" enctype="multipart/form-data" action='/friend'>
+        <li>
+        <button name="addFriend" value="{{stranger[0]}}" type="submit">Add Friend</button> 
+        {{stranger[1]}} {{stranger[2]}} </br>
+        Gender: {{stranger[6]}} <br>
+        E-mail: {{stranger[3]}} <br>
+        Date of Birth: {{stranger[4]}} <br>
+        Hometown: {{stranger[5]}} <br>
+        </li>
+    </form>
+    {% endfor %}
+{% endif %}
+</br>
+
+<h2>My Friends:</h2>
+{% if not friends %}
+<p>You don't have any friends.</p>
+{% endif %}
+
+{% if friends %}
+    {% for friend in friends %}
+        <li>
+        {{friend[0]}} {{friend[1]}} <br>
+        Gender: {{friend[4]}}   <br>
+        Hometown: {{friend[3]}}<br>
+        </li>
+  {% endfor %}
+{% endif %}
+
+</br>
+<style>
+    div{ float: left;}
+    
+      </style>
+    
+    <div>
+    <ul>
+      
+      <h3>Photos and Albums</h3>
+      <li><a href='/upload'>Upload a photo</a> </li>
+      <li><a href='/deletephoto'>Delete a Photo</a></li>
+      <li><a href='/tagsearch'>Search Photos</a> </li>
+      <li><a href='/photorecom'>Photo Recommendations</a> </li>
+      <li><a href='/viewmyphotos'>View My Album</a></li>
+      <li><a href='/viewallalbum'>View All existing Album</a></li>  
+    
+    </ul>
+    </div>
+    <div>
+      <ul>
+      <h3>Socialize</h3>
+    <li><a href='/friend'>Friends</a> </li>
+    <li><a href='/tags'>Tags</a> </li>
+    <li><a href='/aphotos'>Everyone's Photos</a></li>
+    <li><a href='/commentphoto'>Comment Photos</a></li>
+    <li><a href='/commentdisplay'>See Comments</a></li>
+    <li><a href='/searchcomment'>Search a Comment</a></li>
+    <li><a href='/likephotos'>Like a Photo</a></li>
+    </ul>
+    </div>
+    <div>
+      <ul>
+    <h3>Your Account</h3>
+    <li><a href='/logout'>Logout</a></li>
+    <li><a href='/'>Home</a></li>
+    <br>
+    
+    </ul>
+    </div>

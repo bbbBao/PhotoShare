@@ -1,0 +1,75 @@
+<title>Like Photos</title>
+
+<style>
+    img {
+      width: 50%;
+      height: 50%;
+    }
+</style>
+
+<h1>All Photos<h1>
+    {%if likedlist %}
+    <h2>Liked photo list</h2>
+    
+        {% for l in likedlist %}
+        Photo ID : {{l[0]}}<br>
+        {% endfor%}
+    {% endif %}
+    
+    {% if photos %}
+    <h2>Here are all photos</h2>
+        <ul>
+        {% for photo in photos %}
+        <form method="post" enctype="multipart/form-data" action='/likephotos'>
+            Photo ID : {{photo[1]}}<br>
+            Caption: {{photo[2]}}<br>
+            <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}' ><br>
+            
+            <button name="like" value="{{photo[1]}}" type="submit">Like</button> <br>
+        </form>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+</form>
+
+
+<style>
+    div{ float: left;}
+    
+      </style>
+    
+    <div>
+    <ul>
+      
+      <h3>Photos and Albums</h3>
+      <li><a href='/upload'>Upload a photo</a> </li>
+      <li><a href='/deletephoto'>Delete a Photo</a></li>
+      <li><a href='/tagsearch'>Search Photos</a> </li>
+      <li><a href='/photorecom'>Photo Recommendations</a> </li>
+      <li><a href='/viewmyphotos'>View My Album</a></li>
+      <li><a href='/viewallalbum'>View All existing Album</a></li>  
+    
+    </ul>
+    </div>
+    <div>
+      <ul>
+      <h3>Socialize</h3>
+    <li><a href='/friend'>Friends</a> </li>
+    <li><a href='/tags'>Tags</a> </li>
+    <li><a href='/aphotos'>Everyone's Photos</a></li>
+    <li><a href='/commentphoto'>Comment Photos</a></li>
+    <li><a href='/commentdisplay'>See Comments</a></li>
+    <li><a href='/searchcomment'>Search a Comment</a></li>
+    <li><a href='/likephotos'>Like a Photo</a></li>
+    </ul>
+    </div>
+    <div>
+      <ul>
+    <h3>Your Account</h3>
+    <li><a href='/logout'>Logout</a></li>
+    <li><a href='/'>Home</a></li>
+    <br>
+    
+    </ul>
+    </div>

@@ -1,0 +1,45 @@
+<head>
+    <title>Tags</title>
+</head>
+
+<style>
+    img {
+      width: 50%;
+      height: 50%;
+    }
+</style>
+
+<h1>All Tags: </h1>
+
+{% if tags %}
+    {% for tag in tags %}
+    <form method="post" enctype="multipart/form-data" action='/tags'>
+        <li>
+            <button name="checkPhotos" value="{{tag[2]}}" type="submit">Check Photos</button> 
+            {{tag[2]}}</br>
+            </li>
+    </form>
+    {% endfor %}
+{% endif %}
+
+{% if photos %}
+<h2>Here are your photos</h2>
+    <ul>
+    {% for photo in photos %}
+
+        <li>Uploaded By: {{photo[2]}} {{photo[3]}}<br>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}'><br>
+        Caption: {{photo[1]}}
+        </li>
+        <br>
+    {% endfor %}
+    </ul>
+{% endif %}
+<br>
+<ul>
+    <li><a href='/upload'>Upload a photo</a> </li>
+    <li><a href='/friend'>Friends</a> </li>
+    <li><a href='/tagsearch'>Search Photos</a> </li>
+    <li><a href='/logout'>Logout</a></li>
+    <li><a href='/'>Home</a></li>
+    </ul>

@@ -1,0 +1,31 @@
+<head>
+    <title> Browse All Albums </title>
+  </head>
+  <h1> Albums List </h1>
+  {% if not album2 %}
+  <h2>Looks like there are no albums.</h2>
+  {% endif %}
+
+  {% if album2 %}
+    
+    {% for a in album2 %}
+        <li>
+        Album ID : {{a[0]}} <br>
+        Name: {{a[1]}}<br>
+        Date: {{a[2]}} <br> 
+        Owner: {{a[3]}} <br>
+        </li>
+        
+
+    {% endfor %}
+  {% endif %}
+
+  <h2>View Photos By Album ID:</h2>
+
+    <form method="post" action="{{ url_for('SearchBYID') }}">
+        <label for="album id">Album ID:</label>
+        <input type="text" name="Album ID">
+        <input type="submit" value="Search"/>
+    </form>
+<br>
+    <li><a href='/'>Home</a></li>

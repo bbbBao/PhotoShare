@@ -1,0 +1,22 @@
+
+    <h2>Here are All photos</h2>
+    <form method="post" action="{{ url_for('searchcomment') }}">
+        <label for="commenttext">Comment Text:</label>
+        <input type="text" name="commenttext">
+        <input type="submit" value="Search"/>
+        </form>
+    {% if comments %}    
+    Comments Text: {{comments}} <br>
+        {% if list %}
+            {% for n in list %}
+                User Name: {{n[2]}} {{n[3]}}<br>
+                Number of Comment: {{n[1]}}<br><br>
+            {% endfor %}
+        {% endif %}
+    {% endif %}
+    
+    {%if res%}
+        No Such Comments
+    {%endif%}
+
+<li><a href='/'>Home</a></li>

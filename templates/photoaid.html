@@ -1,0 +1,22 @@
+
+<style>
+    img {
+      width: 50%;
+      height: 50%;
+    }
+</style>
+
+<h2>Here are your photos </h2>
+    <ul>
+    {% for p in photo_data %}
+
+        <li>{{p[2]}}<br>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(p[0]).decode("ascii") }}' ></li>
+    {% endfor %}
+    </ul>
+
+    <form>
+        <input type="button" value="Back" onclick="history.back()">
+    </form>
+
+

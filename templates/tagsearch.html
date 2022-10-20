@@ -1,0 +1,73 @@
+<head>
+    <title>Photo Search</title>
+</head>
+
+<style>
+    img {
+      width: 50%;
+      height: 50%;
+    }
+</style>
+
+<h1>Search Photos</h1>
+<h2>Enter key words (tags): </h2>
+<form method="post" action="{{ url_for('tag_search') }}">
+    <label for="tag">Tags:</label>
+    <input type="text" name="tag">
+    <input type="submit" value="Search"/>
+</form>
+<br>
+
+{% if photos %}
+<h2>Here are your photos</h2>
+    <ul>
+    {% for photo in photos %}
+
+        <li>Uploaded By: {{photo[2]}} {{photo[3]}}<br>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}'><br>
+        Caption: {{photo[1]}}
+        </li>
+        <br>
+    {% endfor %}
+    </ul>
+{% endif %}
+<br>
+<style>
+    div{ float: left;}
+    
+      </style>
+    
+    <div>
+    <ul>
+      
+      <h3>Photos and Albums</h3>
+      <li><a href='/upload'>Upload a photo</a> </li>
+      <li><a href='/deletephoto'>Delete a Photo</a></li>
+      <li><a href='/tagsearch'>Search Photos</a> </li>
+      <li><a href='/photorecom'>Photo Recommendations</a> </li>
+      <li><a href='/viewmyphotos'>View My Album</a></li>
+      <li><a href='/viewallalbum'>View All existing Album</a></li>  
+    
+    </ul>
+    </div>
+    <div>
+      <ul>
+      <h3>Socialize</h3>
+    <li><a href='/friend'>Friends</a> </li>
+    <li><a href='/tags'>Tags</a> </li>
+    <li><a href='/aphotos'>Everyone's Photos</a></li>
+    <li><a href='/commentphoto'>Comment Photos</a></li>
+    <li><a href='/commentdisplay'>See Comments</a></li>
+    <li><a href='/searchcomment'>Search a Comment</a></li>
+    <li><a href='/likephotos'>Like a Photo</a></li>
+    </ul>
+    </div>
+    <div>
+      <ul>
+    <h3>Your Account</h3>
+    <li><a href='/logout'>Logout</a></li>
+    <li><a href='/'>Home</a></li>
+    <br>
+    
+    </ul>
+    </div>

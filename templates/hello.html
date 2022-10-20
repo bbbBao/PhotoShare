@@ -1,0 +1,103 @@
+<!-- author ben lawson (balawson@bu.edu) -->
+<!doctype html>
+{% if message %}
+  <h4>{{message}}!</h4>
+{% endif %}
+<title>Photoshare</title>
+{% if name %}
+  <h1>Hello {{ name }}!</h1>
+{% endif %}
+
+{% if topContribute %}
+  <h2>The Top 10 Most Contributed Users:</h2>
+  <ol>
+  {% for user in topContribute %}
+      <li>{{user[1]}} {{user[2]}}</li>
+  {% endfor %}
+  </ol>
+
+{% endif %}
+
+{% if topTag %}
+  <h2>The Top 5 Most Popular Tags:</h2>
+  <ol>
+  {% for tag in topTag %}
+    <form method="post" enctype="multipart/form-data" action='/tags'>
+        <li>
+            <button name="checkPhotos" value="{{tag[0]}}" type="submit">Check Photos</button> 
+            {{tag[0]}} | {{tag[1]}}</br>
+            </li>
+    </form>
+    {% endfor %}
+  </ol>
+
+{% endif %}
+
+{% if tags %}
+  <h2>Your Tags: </h2>
+    {% for tag in tags %}
+    <form method="post" enctype="multipart/form-data" action='/viewphotos'>
+        <li>
+            <button name="checkPhotos" value="{{tag[2]}}" type="submit">Check Photos</button> 
+            {{tag[2]}}</br>
+            </li>
+    </form>
+    {% endfor %}
+{% endif %}
+
+{% if photos %}
+<h2>Here are your photos</h2>
+    <ul>
+    {% for photo in photos %}
+
+        <li>{{photo[2]}}<br>
+        <img src='data:image/jpg;base64, {{ base64.b64encode(photo[0]).decode("ascii") }}' width="50%" height="30%" ></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+
+{% if message is none %}
+  <p>You should <a href='/login'>login!</a></p>
+{% else %}
+  <p> Go to <a href='/profile'>profile?</a></p>
+{% endif %}
+<br>
+<style>
+div{ float: left;}
+
+  </style>
+
+<div>
+<ul>
+  
+  <h3>Photos and Albums</h3>
+  <li><a href='/upload'>Upload a photo</a> </li>
+  <li><a href='/deletephoto'>Delete a Photo</a></li>
+  <li><a href='/tagsearch'>Search Photos</a> </li>
+  <li><a href='/photorecom'>Photo Recommendations</a> </li>
+  <li><a href='/viewmyphotos'>View My Album</a></li>
+  <li><a href='/viewallalbum'>View All existing Album</a></li>  
+
+</ul>
+</div>
+<div>
+  <ul>
+  <h3>Socialize</h3>
+<li><a href='/friend'>Friends</a> </li>
+<li><a href='/tags'>Tags</a> </li>
+<li><a href='/aphotos'>Everyone's Photos</a></li>
+<li><a href='/commentphoto'>Comment Photos</a></li>
+<li><a href='/commentdisplay'>See Comments</a></li>
+<li><a href='/searchcomment'>Search a Comment</a></li>
+<li><a href='/likephotos'>Like a Photo</a></li>
+</ul>
+</div>
+<div>
+  <ul>
+<h3>Your Account</h3>
+<li><a href='/logout'>Logout</a></li>
+<li><a href='/'>Home</a></li>
+<br>
+
+</ul>
+</div>

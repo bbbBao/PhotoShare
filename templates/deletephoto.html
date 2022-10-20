@@ -1,0 +1,11 @@
+<title>Delete a Photo</title>
+<h1>Delete a Photo:</h1>
+        <div id="content">
+            <form method="post" action="{{ url_for('deletephoto') }}">
+                <label for="PhotoID">Photo ID:</label>
+                <input type="text" name="PhotoID"><br/>
+                <input type="submit" value="Delete"/>
+            </form>
+
+
+            <li><a href='/'>Home</a></li>
